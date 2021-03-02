@@ -11,10 +11,4 @@ CREATE TABLE books(
 
 );
 
-INSERT INTO books(description,authors,title,img)
-VALUES ('heredis','me','ana','picture');
-
-
-INSERT INTO books(img,title,authors,description)
-VALUES ('new img','boodah96','abdalrhman','discription');
 

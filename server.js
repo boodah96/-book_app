@@ -4,6 +4,10 @@ require('dotenv').config();
 //define express 
 const express = require('express');
 
+//override
+const methodOverride = require('method-override');
+
+
 const pg = require("pg")
 
 const superagent = require('superagent')
@@ -21,6 +25,9 @@ server.use(express.static('./public'));
 
 server.use(express.urlencoded({ extended: true }));
 
+server.use(methodOverride('_method'));
+
+
 server.set('view engine', 'ejs');
 //home rout
 server.get('/', handelHome)
@@ -32,6 +39,11 @@ server.post('/searches', SearchResult)
 server.get('/books/:id', bookDetails)
 // insert data to DB
 server.post('/books', selectBook)
+//ubdate book details
+server.put('/books/:id', updateBook)
+// delete book
+server.delete('/books/:id', deleteBook)
+
 
 
 //functions
@@ -91,8 +103,32 @@ let values=[img,title,authors,description,isbn,bookshelf];
 client.query(SQL,values)
 .then(bookId=>{
     res.redirect(`/books/${bookId.rows[0].id}`);
-})
+}) .catch((error) => {
+    errorHandler(error, req, res);
+});
 
+}
+
+function updateBook(req,res){
+    let {img,title,authors,description,isbn,bookshelf}=req.body;
+    let SQL = `UPDATE books SET img=$1, title=$2, authors=$3, description=$4, isbn=$5, bookshelf=$6
+    WHERE id=$7;`
+let values=[img,title,authors,description,isbn,bookshelf,req.params.id];
+client.query(SQL,values)
+.then(()=> res.redirect(`/books/${req.params.id}`))
+.catch((error) => {
+    errorHandler(error, req, res);
+});
+}
+
+function deleteBook(req,res){
+    let SQL=`DELETE FROM books WHERE id=$1`
+    let value= [req.params.id];
+    client.query(SQL,value)
+    .then(()=> res.redirect('/'))
+    .catch((error) => {
+        errorHandler(error, req, res);
+    });
 }
 //constructors
 function Book(data) {
