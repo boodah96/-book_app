@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>book-app</title>
     <link rel="stylesheet" href="../styles/base.css">
+    <style>.hidden{display: none;}</style>
 </head>
 
 <body>
@@ -24,11 +25,22 @@
                 <p>
                     <%= element.description %>
                 </p>
+
+                <form action='/books' method="post">
+                    <input type="text" name="img" value="<%=element.img %>" class="hidden">
+                    <input type="text" name="title" value=" <%= element.title %>" class="hidden">
+                    <input type="text" name="authors" value="<%= element.authors %>" class="hidden">
+                    <input type="text" name="description" value="  <%= element.description %>" class="hidden">
+                    <input type="text" name="isbn" value=" <%= element.isbn %>" class="hidden">
+                    <input type="text" name="bookshelf" value="<%= element.bookshelf %> " class="hidden">
+                    <button type="submit">Select this Book</button>
+
+           
+
+                </form>
             </div>
+                <% }) %>
 
-            <% }) %>
-
-         
     </section>
 </body>
 

@@ -5,7 +5,10 @@ CREATE TABLE books(
     img VARCHAR(255),
     title VARCHAR(255),
     authors VARCHAR(255),
-    description TEXT
+    description TEXT,
+    isbn VARCHAR(255),
+    bookshelf VARCHAR(255)
+
 );
 
 INSERT INTO books(description,authors,title,img)
