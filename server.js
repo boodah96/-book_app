@@ -77,7 +77,7 @@ function bookDetails(req, res) {
     console.log(bookId);
     client.query(SQL, bookId)
         .then(result => {
-            res.render('pages/books/show', { allBooks: result.rows })
+            res.render('pages/books/show', { allBooks: result.rows[0] })
         })
         .catch((error) => {
             errorHandler(error, req, res);

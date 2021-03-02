@@ -1,28 +1,38 @@
 <section>
-    <%allBooks.forEach(element=>{ %>
+    
         <div>
-            <img src='<%=element.img %>' alt="book Image ">
+            <img src='<%=allBooks.img %>' alt="book Image ">
             <h2>
-                <%= element.title %>
+                <%= allBooks.title %>
             </h2>
             <h3>
-                <%= element.authors %>
+                <%= allBooks.authors %>
             </h3>
             <p>
-                <%= element.description %>
+                <%= allBooks.description %>
             </p>
             <h3>
-              ISBN:  <%= element.isbn %>
+              ISBN:  <%= allBooks.isbn %>
 
             </h3>
             <h3>
-                Shelf:  <%= element.bookshelf %>
+                Shelf:  <%= allBooks.bookshelf %>
 
             </h3>
         </div>
+        <%- include('edit') %> 
 
-        <% }) %>
+       
 
         <a href="\">Back to Home</a>
-     
+
+        <button class="update" >update details</button>
+
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+$('.ubdateForm').hide();    
+$('.update').on('click',()=>{
+$('.ubdateForm').toggle();
+})
+</script>
