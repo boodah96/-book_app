@@ -1,0 +1,28 @@
+<section>
+    <%allBooks.forEach(element=>{ %>
+        <div>
+            <img src='<%=element.img %>' alt="book Image ">
+            <h2>
+                <%= element.title %>
+            </h2>
+            <h3>
+                <%= element.authors %>
+            </h3>
+            <p>
+                <%= element.description %>
+            </p>
+            <h3>
+                <%= element.isbn %>
+
+            </h3>
+            <h3>
+                <%= element.bookshelf %>
+
+            </h3>
+        </div>
+
+        <% }) %>
+
+        <a href="\">Back to Home</a>
+     
+</section>

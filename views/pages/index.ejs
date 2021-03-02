@@ -10,6 +10,26 @@
 <body>
     <h1>welcome all</h1>
     <a href="/">Home</a>
-    <a href="/searches/new">New serch</a>
+    <a href="/searches/new">search the Google books API</a>
+    <h3><%=allBooks.length %> Saved Books </h3>
+
+    <section>
+        <%allBooks.forEach(element=>{ %>
+            <div>
+                <img src=<%=element.img %> alt="book Image ">
+                <h2>
+                    <%= element.title %>
+                </h2>
+                <h3>
+                    <%= element.authors %>
+                </h3>
+                <form action="/books/<%= element.id %> " method="get">
+                <button type="submit">View Details</button>
+                </form>
+            </div>
+
+            <% }) %>
+         
+    </section>
 </body>
 </html>
